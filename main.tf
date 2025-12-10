@@ -49,7 +49,7 @@ resource "azurerm_storage_container" "newcontainer2" {
 } 
 
 # Create MySQL Server 
-resource "azurerm_mysql_flexible_server" "serverformation1" { 
+resource "azurerm_mysql_flexible_server" "serverteam8" { 
 name    =  "serveriac" #add your team name to make it unique. Can only consist of lowercase letters and numbers, and must be between 3 and 24 characters long.
 
 location    =  var.location 
