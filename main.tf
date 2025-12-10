@@ -69,7 +69,7 @@ administrator_password =  "CtfMercrediTeam8!!"
 resource "azurerm_mysql_flexible_server_configuration" "ssl_config" {
   name                = "require_secure_transport"
   resource_group_name = var.rg_name
-  server_name         = azurerm_mysql_flexible_server.serverformation1.name
+  server_name         = azurerm_mysql_flexible_server.serverteam8.name
   value               = "OFF"
 }
 
@@ -77,10 +77,10 @@ resource "azurerm_mysql_flexible_server_configuration" "ssl_config" {
 resource "azurerm_mysql_flexible_database" "mysqldb1" { 
  name    =  "mysqldb1-iac" 
  resource_group_name =  var.rg_name
- server_name   =  azurerm_mysql_flexible_server.serverformation1.name
+ server_name   =  azurerm_mysql_flexible_server.serverteam8.name
  charset    =  "utf8" 
  collation    =  "utf8_unicode_ci" 
-  depends_on = [ azurerm_mysql_flexible_server.serverformation1 ] 
+  depends_on = [ azurerm_mysql_flexible_server.serverteam8 ] 
 } 
 # Configure firewall to open access 
 resource "azurerm_mysql_flexible_server_firewall_rule" "mysqlfwrule1" { 
