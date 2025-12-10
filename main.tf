@@ -49,7 +49,7 @@ resource "azurerm_storage_container" "newcontainer2" {
 } 
 
 # Create MySQL Server 
-resource "azurerm_mysql_flexible_server" "serverteam8" { 
+resource "azurerm_mysql_flexible_server" "newServer" { 
 name    =  "serveriac" #add your team name to make it unique. Can only consist of lowercase letters and numbers, and must be between 3 and 24 characters long.
 
 location    =  var.location 
@@ -69,7 +69,7 @@ administrator_password =  "CtfMercrediTeam8!!"
 resource "azurerm_mysql_flexible_server_configuration" "ssl_config" {
   name                = "require_secure_transport"
   resource_group_name = var.rg_name
-  server_name         = azurerm_mysql_flexible_server.serverteam8.name
+  server_name         = azurerm_mysql_flexible_server.newServer.name
   value               = "OFF"
 }
 
@@ -77,18 +77,18 @@ resource "azurerm_mysql_flexible_server_configuration" "ssl_config" {
 resource "azurerm_mysql_flexible_database" "mysqldb1" { 
  name    =  "mysqldb1-iac" 
  resource_group_name =  var.rg_name
- server_name   =  azurerm_mysql_flexible_server.serverteam8.name
+ server_name   =  azurerm_mysql_flexible_server.newServer.name
  charset    =  "utf8" 
  collation    =  "utf8_unicode_ci" 
-  depends_on = [ azurerm_mysql_flexible_server.serverteam8 ] 
+  depends_on = [ azurerm_mysql_flexible_server.newServer ] 
 } 
 # Configure firewall to open access 
 resource "azurerm_mysql_flexible_server_firewall_rule" "mysqlfwrule1" { 
  name        =  "mysqlfwrule1-iac" 
  resource_group_name =  var.rg_name
- server_name     =  azurerm_mysql_flexible_server.serverteam8.name 
+ server_name     =  azurerm_mysql_flexible_server.newServer.name 
   start_ip_address  =  "0.0.0.0"
  end_ip_address   =  "255.255.255.255" 
- depends_on = [ azurerm_mysql_flexible_server.serverteam8, 
+ depends_on = [ azurerm_mysql_flexible_server.newServer, 
  azurerm_mysql_flexible_database.mysqldb1 ] 
 }
